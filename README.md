@@ -24,3 +24,13 @@ How to Run
 Compile and run the Java project in your preferred IDE (e.g., IntelliJ IDEA)
 Interact with the application through the command-line menu
 Follow on-screen prompts to view or modify the organization
+
+Menu Interface
+
+Option 1: Builds and prints a predefined organization chart
+
+Option 2: Adds a new employee to a chosen group
+
+Option 3: Removes an existing employee by name
+
+Option Q/q: Exits the application
