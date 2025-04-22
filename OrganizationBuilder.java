@@ -1,5 +1,5 @@
-public class Tester {
-    public static void main(String[] args){
+public class OrganizationBuilder {
+    public static OrgComponent buildOrganization(){
         OrgComponent top = new Group("Top management", "Scrooge McDuck");
         OrgComponent mrkt = new Group("Marketing", "Donald Duck");
         OrgComponent sd = new Group("Software development", "Daisy Duck");
@@ -29,8 +29,8 @@ public class Tester {
         cs.add(seventh);
         cs.add(eighth);
         
-        top.print();
-        
+        //top.print();
+        return top;
 
     }
 }

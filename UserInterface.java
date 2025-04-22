@@ -4,8 +4,10 @@ public class UserInterface{
 
     public static void main(String[] args){
         boolean flag = true;
+        Scanner scan = new Scanner(System.in);
+
         while (flag){
-            System.out.println();
+            //System.out.println();
             System.out.println("Organization management system");
             int length = "Organization management system".length();
             System.out.println(("-").repeat(length));
@@ -16,12 +18,14 @@ public class UserInterface{
             System.out.println("Q. Quit the application");
             System.out.println();
             System.out.print("Your choice: ");
-            Scanner scan = new Scanner(System.in);
+
+           
             String answer = scan.next();
             System.out.println();
 
             if(answer.equals("1")){
-                System.out.println("Choice 1 not implemented.");
+                OrgComponent org = OrganizationBuilder.buildOrganization();
+                org.print();
             }else if(answer.equals("2")){
                 System.out.println("Choice 2 not implemented.");
             }else if(answer.equals("3")){
@@ -32,7 +36,9 @@ public class UserInterface{
             }else{
                 System.out.println("There is no corresponding option in the menu.");
             }
+            
         }    
+        scan.close();
 }
         
 
