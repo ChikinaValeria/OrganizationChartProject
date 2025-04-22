@@ -23,10 +23,26 @@ public class Group extends OrgComponent{
         returnorgComponents.get(i);
     }*/
 
-    public void print(){
-        System.out.println("Group: " + name + ", boss's name: " + boss);
-        for (OrgComponent orgComponent : orgComponents){
-            orgComponent.print();
+    public void print() {
+        printWithIndent(0, true);
+        System.out.println();
+    }
+    
+    private void printWithIndent(int indentLevel, boolean isTopLevel) {
+        String indent = "  ".repeat(indentLevel);
+
+        if (!isTopLevel) {
+            System.out.println(); // empty line before every nested group exept the very first one
+        }
+        System.out.println(indent + "Group: " + name + ", boss's name: " + boss);
+
+        for (OrgComponent component : orgComponents) {
+            if (component instanceof Group) {
+                ((Group) component).printWithIndent(indentLevel + 1, false);
+            } else {
+                System.out.print("  ".repeat(indentLevel + 1));
+                component.print();
+            }
         }
     }
 }
