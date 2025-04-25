@@ -45,4 +45,28 @@ public class Group extends OrgComponent{
             }
         }
     }
+    @Override
+    public void addWorker(String groupName, String workerName){
+        OrgComponent searchedGroup = findGroupByName(groupName);
+        if (searchedGroup == null) {
+            System.out.println("Group " + groupName + " not found.");
+            return;
+        }
+        if (searchedGroup instanceof Group) {
+            ((Group) searchedGroup).orgComponents.add(new Worker(workerName));
+        } else {
+            System.out.println(groupName + " is not a group.");
+        }
+    }
+    
+    private OrgComponent findGroupByName(String name) {
+        if (this.name.equalsIgnoreCase(name)) return this;
+        for (OrgComponent comp : orgComponents) {
+            if (comp instanceof Group) {
+                OrgComponent found = ((Group) comp).findGroupByName(name);
+                if (found != null) return found;
+            }
+        }
+        return null;
+    }
 }

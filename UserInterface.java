@@ -5,6 +5,7 @@ public class UserInterface{
     public static void main(String[] args){
         boolean flag = true;
         Scanner scan = new Scanner(System.in);
+        OrgComponent org = null;
 
         while (flag){
             //System.out.println();
@@ -21,13 +22,21 @@ public class UserInterface{
 
            
             String answer = scan.next();
+            scan.nextLine();
             System.out.println();
 
             if(answer.equals("1")){
-                OrgComponent org = OrganizationBuilder.buildOrganization();
+                org = OrganizationBuilder.buildOrganization();
                 org.print();
             }else if(answer.equals("2")){
-                System.out.println("Choice 2 not implemented.");
+                org.print();
+                System.out.print("Give unit name: ");
+                String groupName = scan.nextLine();
+                System.out.print("Give person name: ");
+                String workerName = scan.nextLine();
+                org.addWorker(groupName, workerName);
+                System.out.println();
+                org.print();
             }else if(answer.equals("3")){
                 System.out.println("Choice 3 not implemented.");
             }else if(answer.equalsIgnoreCase("q")){
