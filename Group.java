@@ -45,6 +45,20 @@ public class Group extends OrgComponent{
             }
         }
     }
+    /*@Override
+    public void addWorker(String groupName, String workerName){
+        OrgComponent searchedGroup = findGroupByName(groupName);
+        if (searchedGroup == null) {
+            System.out.println("Group " + groupName + " not found.");
+            return;
+        }
+        if (searchedGroup instanceof Group) {
+            ((Group) searchedGroup).orgComponents.add(0, new Worker(workerName));
+        } else {
+            System.out.println(groupName + " is not a group.");
+        }
+    }*/
+    
     @Override
     public void addWorker(String groupName, String workerName){
         OrgComponent searchedGroup = findGroupByName(groupName);
@@ -53,12 +67,24 @@ public class Group extends OrgComponent{
             return;
         }
         if (searchedGroup instanceof Group) {
-            ((Group) searchedGroup).orgComponents.add(new Worker(workerName));
+            Group group = (Group) searchedGroup;
+            int insertIndex = group.orgComponents.size(); // по умолчанию — вставить в конец
+            for (int i = 0; i < group.orgComponents.size(); i++) {
+                if (group.orgComponents.get(i) instanceof Group) {
+                    insertIndex = i; // нашли первую группу — сюда вставляем
+                    System.out.println("Добавлен новый работник в группу: " + groupName);
+                    System.out.println("Текущее количество компонентов в группе: " + group.orgComponents.size());
+                    break;
+                }
+            }
+            group.orgComponents.add(insertIndex, new Worker(workerName));
         } else {
             System.out.println(groupName + " is not a group.");
         }
-    }
-    
+        
+
+}
+
     private OrgComponent findGroupByName(String name) {
         if (this.name.equalsIgnoreCase(name)) return this;
         for (OrgComponent comp : orgComponents) {
