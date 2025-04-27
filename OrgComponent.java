@@ -1,10 +1,23 @@
 public abstract class OrgComponent {
+    private Group parentGroup;
 
     public void print(){
         throw new UnsupportedOperationException();
     };
 
+    public Group getParent(){
+        return parentGroup;
+    }
+
+    public void setParent(Group parent){
+        parentGroup = parent;
+    }
+
     public void add(OrgComponent unit){
+        throw new UnsupportedOperationException();
+    }
+
+    public void remove(OrgComponent unit){
         throw new UnsupportedOperationException();
     }
     
@@ -12,11 +25,11 @@ public abstract class OrgComponent {
         throw new UnsupportedOperationException();
     }
 
-    public void remove(OrgComponent unit){
+    public void removeWorker(String workerName){
         throw new UnsupportedOperationException();
     }
 
-    public OrgComponent getChild(int i){
+    /*public OrgComponent getChild(int i){
         throw new UnsupportedOperationException();
-    }
+    }*/
 }

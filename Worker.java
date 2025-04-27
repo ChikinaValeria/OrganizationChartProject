@@ -1,7 +1,7 @@
 public class Worker extends OrgComponent{
 
     private String name;
-
+   
     public Worker(String name){
         this.name = name;
     }
@@ -10,7 +10,9 @@ public class Worker extends OrgComponent{
         return name;
     }
     
+    @Override
     public void print(){
         System.out.println("Worker: " + name);
     }
+
 }

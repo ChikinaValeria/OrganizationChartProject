@@ -38,7 +38,12 @@ public class UserInterface{
                 System.out.println();
                 org.print();
             }else if(answer.equals("3")){
-                System.out.println("Choice 3 not implemented.");
+                org.print();
+                System.out.print("Give person name: ");
+                String workerName = scan.nextLine();
+                org.removeWorker(workerName);
+                System.out.println();
+                org.print();
             }else if(answer.equalsIgnoreCase("q")){
                 System.out.println("Process finished with exit code 0");
                 flag = false;
