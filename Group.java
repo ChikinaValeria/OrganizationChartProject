@@ -45,43 +45,37 @@ public class Group extends OrgComponent{
     public void addWorker(String groupName, String workerName){
         OrgComponent searchedGroup = findGroupByName(groupName);
         if (searchedGroup == null) {
-            System.out.println("Group " + groupName + " not found.");
-            return;
+            throw new GroupNotFoundException("Organization not found. Give it again.");
         }
-        if (searchedGroup instanceof Group) {
-            Group group = (Group) searchedGroup;
-            int insertIndex = group.getOrgComponents().size(); // по умолчанию — вставить в конец
-            for (int i = 0; i < group.getOrgComponents().size(); i++) {
-                if (group.getOrgComponents().get(i) instanceof Group) {
-                    insertIndex = i; // нашли первую группу — сюда вставляем
-                    //System.out.println("Добавлен новый работник в группу: " + groupName);
-                    //System.out.println("Текущее количество компонентов в группе: " + group.orgComponents.size());
-                    break;
-                }
+        if (!(searchedGroup instanceof Group)) {
+            throw new GroupNotFoundException(groupName + " is not a group.");
+        }
+        Group group = (Group) searchedGroup;
+        //find the place to add Worker depending on nested groups
+        int insertIndex = group.getOrgComponents().size();
+        for (int i = 0; i < group.getOrgComponents().size(); i++) {
+            if (group.getOrgComponents().get(i) instanceof Group) {
+                insertIndex = i;
+                break;
             }
-            Worker newWorker = new Worker(workerName);
-            newWorker.setParent(group); // установить родителя
-            group.getOrgComponents().add(insertIndex, newWorker);
-
-        } else {
-            System.out.println(groupName + " is not a group.");
         }
+        Worker newWorker = new Worker(workerName);
+        newWorker.setParent(group);
+        group.getOrgComponents().add(insertIndex, newWorker);
     }
 
     @Override
     public void removeWorker(String workerName){
         Worker deletedWorker = findWorkerByName(workerName);
         if (deletedWorker == null) {
-            System.out.println("Worker " + workerName + " not found.");
-            return;
+            throw new WorkerNotFoundException("Person not found. Give it again.");
         }
         Group parent = deletedWorker.getParent();
-        if (parent != null){
-            parent.getOrgComponents().remove(deletedWorker);
-            return;
-        }else{
-            System.out.println("Parent group not found for worker " + workerName + ".");
+        //hardly reachable in current program architecture
+        if (parent == null) {
+            throw new WorkerNotFoundException("Parent group not found for worker '" + workerName + "'.");
         }
+        parent.getOrgComponents().remove(deletedWorker);
     }
 
     private void printWithIndent(int indentLevel, boolean isTopLevel) {
