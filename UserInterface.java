@@ -9,7 +9,6 @@ public class UserInterface{
 
         while (flag){
             try {
-                //System.out.println();
                 System.out.println("Organization management system");
                 int length = "Organization management system".length();
                 System.out.println(("-").repeat(length));
@@ -21,37 +20,8 @@ public class UserInterface{
                 System.out.println();
                 System.out.print("Your choice: ");
 
-            
-                /*String answer = scan.nextLine().trim();
+                String input = scan.nextLine().trim();
                 System.out.println();
-
-                if(answer.equals("1")){
-                    org = OrganizationBuilder.buildOrganization();
-                    org.print();
-                }else if(answer.equals("2")){
-                    org.print();
-                    System.out.print("Give unit name: ");
-                    String groupName = scan.nextLine();
-                    System.out.print("Give person name: ");
-                    String workerName = scan.nextLine();
-                    org.addWorker(groupName, workerName);
-                    System.out.println();
-                    org.print();
-                }else if(answer.equals("3")){
-                    org.print();
-                    System.out.print("Give person name: ");
-                    String workerName = scan.nextLine();
-                    org.removeWorker(workerName);
-                    System.out.println();
-                    org.print();
-                }else if(answer.equalsIgnoreCase("q")){
-                    System.out.println("Process finished with exit code 0");
-                    flag = false;
-                }else{
-                    System.out.println("ERROR: Invalid input. Please enter 1, 2, 3, q or Q.");
-                    System.out.println();*/
-                    String input = scan.nextLine().trim();
-                    System.out.println();
 
                 if (input.equalsIgnoreCase("q")) {
                     System.out.println("Process finished with exit code 0");

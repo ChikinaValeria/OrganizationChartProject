@@ -28,8 +28,4 @@ public abstract class OrgComponent {
     public void removeWorker(String workerName){
         throw new UnsupportedOperationException();
     }
-
-    /*public OrgComponent getChild(int i){
-        throw new UnsupportedOperationException();
-    }*/
 }

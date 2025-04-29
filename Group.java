@@ -4,7 +4,6 @@ import java.util.ArrayList;
 public class Group extends OrgComponent{
     
     private String name, boss;
-    
     private List<OrgComponent> orgComponents = new ArrayList<OrgComponent>();
 
     public Group(String name, String boss){
@@ -23,7 +22,7 @@ public class Group extends OrgComponent{
     public List<OrgComponent> getOrgComponents(){
         return orgComponents;
     }
-    
+   
     @Override
     public void add(OrgComponent unit){
         orgComponents.add(unit);
@@ -46,9 +45,6 @@ public class Group extends OrgComponent{
         OrgComponent searchedGroup = findGroupByName(groupName);
         if (searchedGroup == null) {
             throw new GroupNotFoundException("Organization not found. Give it again.");
-        }
-        if (!(searchedGroup instanceof Group)) {
-            throw new GroupNotFoundException(groupName + " is not a group.");
         }
         Group group = (Group) searchedGroup;
         //find the place to add Worker depending on nested groups
@@ -97,7 +93,7 @@ public class Group extends OrgComponent{
     }
     
     private OrgComponent findGroupByName(String name) {
-        if (this.name.equalsIgnoreCase(name)) return this;
+        if (this.name.equals(name)) return this;
         for (OrgComponent comp : orgComponents) {
             if (comp instanceof Group) {
                 OrgComponent found = ((Group) comp).findGroupByName(name);
@@ -110,7 +106,6 @@ public class Group extends OrgComponent{
     
 
     public Worker findWorkerByName(String name){
-        //if (this.name.equalsIgnoreCase(name)) return this;
         for (OrgComponent comp : orgComponents) {
             if (comp instanceof Worker) {
                 Worker worker = (Worker) comp;
