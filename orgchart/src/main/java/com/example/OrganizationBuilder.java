@@ -1,3 +1,5 @@
+package com.example;
+
 public class OrganizationBuilder {
     public static OrgComponent buildOrganization(){
         Group top = new Group("Top management", "Scrooge McDuck");

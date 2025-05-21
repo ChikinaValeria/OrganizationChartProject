@@ -1,3 +1,4 @@
+package com.example;
 public abstract class OrgComponent {
     private Group parentGroup;
 

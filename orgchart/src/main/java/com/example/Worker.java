@@ -1,3 +1,4 @@
+package com.example;
 public class Worker extends OrgComponent{
 
     private String name;
